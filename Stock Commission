@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class StockCommission {
+	private static Scanner scanner = new Scanner( System.in);
+	public static void main(String[] args) {
+	  System.out.println("Please type the amount of share of stock you bought");
+	  String in=scanner.nextLine();
+	  double share=Double.parseDouble(in);
+	  System.out.println("Please type the price of one share of that stock");
+	  String input=scanner.nextLine();
+	  double price=Double.parseDouble(input);
+	  double stockAlone=share*price;
+	  double commission=(share*price*(0.02));
+	  double total=stockAlone+commission;
+	  System.out.println("The amount paid for stock alone is $"+ stockAlone);
+	  System.out.println("The amount of the commission is $"+ commission);
+	  System.out.println("The total amount paid is $"+ total);
+	}
+}
