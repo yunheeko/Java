@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Population {
+	private static Scanner scanner = new Scanner( System.in);
+	public static void main(String[] args) {
+		System.out.println("Please type the starting number of the organism");
+		String input = scanner.nextLine();
+		int InitialPop=Integer.parseInt(input);
+		System.out.println("Please type the average daily population increase of the organism in percentage");
+		String inputt = scanner.nextLine();
+		int Percent=Integer.parseInt(inputt);
+		double Increase=(Percent/100.00)+1;
+		System.out.println("Please type the number of days of multiplication");
+		String inputtt = scanner.nextLine();
+		int Days=Integer.parseInt(inputtt);
+		double [] array;
+		array=new double[Days+1];
+		for(int i=0; i<(Days+1); i++) {
+			array[i]=InitialPop*Math.pow(Increase,i);
+			System.out.printf("The Population at day"+i+" is %f",array[i]);
+		}
+	}
+}
