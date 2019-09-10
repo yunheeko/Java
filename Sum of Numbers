@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class SumofNumbers {
+	private static Scanner scanner = new Scanner( System.in);
+	 public static void main(String[] args) {
+	  System.out.println("Please type a positive nonzero integer");
+	  String in=scanner.nextLine();
+	  int number=Integer.parseInt(in);
+	  int sum=0;
+	  for(int a=1; a<=number; a++) {
+		  sum=sum+a;
+	  }
+	  System.out.println("Total sum is "+sum);
+	 }
+}
