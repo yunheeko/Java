@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class ShippingCharges {
+	private static Scanner scanner = new Scanner( System.in);
+	public static void main(String[] args) {
+	  System.out.println("Please type how many miles");
+	  String in=scanner.nextLine();
+	  int totalMiles=Integer.parseInt(in);
+    int howmanymile;
+	  if(totalMiles%500==0)
+		  howmanymile=totalMiles/500;
+	  else
+		  howmanymile=((totalMiles/500)+1);
+	  System.out.println("Please type how many pounds");
+	  String input=scanner.nextLine();
+	  double weight=Double.parseDouble(input);
+	  if(weight<=2)
+		  System.out.println("The shipping charge is $"+(howmanymile*1.10));
+	  if((weight>2)&&(weight<=6))
+		  System.out.println("The shipping charge is $"+(howmanymile*2.20));
+	  if((weight>6)&&(weight<=10))
+		  System.out.println("The shipping charge is $"+(howmanymile*3.70));
+	  if(weight>10)
+		  System.out.println("The shipping charge is $"+(howmanymile*3.80));
+	}
+}
