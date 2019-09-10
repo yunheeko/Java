@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class LetterCounter {
+	private static Scanner scanner = new Scanner( System.in);
+	public static void main(String[] args) {
+		System.out.println("Please type a String");
+		String input = scanner.nextLine();
+		int length=input.length();
+		System.out.println("Please type a character");
+		String inputt=scanner.nextLine();
+		char c=inputt.charAt(0);
+		int count=0;
+		for (int i=0;i<length;i++) {
+			if(input.charAt(i)==c) count=count+1;
+		}
+		System.out.println(c+" appeared "+count+" times");
+	}
+}
