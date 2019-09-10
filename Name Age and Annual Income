@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class NameAgeandAnnualincome{
+	private static Scanner scanner = new Scanner( System.in);
+	public static void main(String[] args) {
+	System.out.println("Please type your name");
+	String name=scanner.nextLine();
+	System.out.println("Please type your age");
+	String input=scanner.nextLine();
+	int age=Integer.parseInt(input);
+	System.out.println("Please type your Annual Income");
+	String SecondInput=scanner.nextLine();
+	double annualPay=Double.parseDouble(SecondInput);
+	System.out.println("My name is "+name+", my age is "+age+" and I hope to earn $"+annualPay+" per year.");
+	}
+}
