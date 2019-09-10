@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+public class GradeBook {
+	private ArrayList <String> studentNames=new ArrayList <String> ();
+	private char [] studentLetterGrades= {'A','B','C','D','F'};
+	private double [][] studentTestScores;
+	
+	public String getStudentName(int studentIndex) {
+		return studentNames.get(studentIndex);
+	}
+		
+	public double calculateAverageTestScore(double[] studentTestScores) {
+			double studentTestScoresTotal=0;
+			double studentTestScoresAverage;
+			for(int currentStudentTestScore=0; currentStudentTestScore<studentTestScores.length; currentStudentTestScore++) {
+				studentTestScoresTotal=studentTestScoresTotal+studentTestScores[currentStudentTestScore];
+			}
+			studentTestScoresAverage=studentTestScoresTotal/studentTestScores.length;
+			return studentTestScoresAverage;
+	}
+
+	public char getStudentLetterGrade(double studentTestScoresAverage) {
+		char studentLetterGrade='Z';
+		if(studentTestScoresAverage<60) {
+			studentLetterGrade='F';
+		}
+		else if(studentTestScoresAverage<70) {
+			studentLetterGrade='D';
+		}
+		else if(studentTestScoresAverage<80) {
+			studentLetterGrade='C';
+		}
+		else if(studentTestScoresAverage<90) {
+			studentLetterGrade='B';
+		}
+		else if(studentTestScoresAverage<=100) {
+			studentLetterGrade='A';
+		}
+		return studentLetterGrade;
+	}
+	public GradeBook(int numberOfStudents, int numberOfTestScoresPerStudent) {
+		studentTestScores=new double[numberOfStudents][numberOfTestScoresPerStudent];
+	}
+}
+
+
+import java.util.Scanner;
+
+public class GradeBookTest {
+	public static void main(String[] args) {
+		Scanner keyboard=new Scanner(System.in);
+		String studentName;
+		double studentScore;
+		double[][]studentTestScores;
+		double studentAverage;
+		char studentLetterGrade;
+		
+		final int NUMBER_OF_STUDENTS=5;
+		final int NUMBER_OF_TESTSCORES_PER_STUDENT=5;
+		
+	}
+}
