@@ -1,0 +1,44 @@
+import java.io.*;
+
+public class primeNumberList {
+
+	public static boolean isPrime(int userNumber) {
+		int evenDivisions=0;
+		if(userNumber<1) return false;
+		for(int currentDivision=1; currentDivision<=userNumber; currentDivision++) {
+			if(userNumber%currentDivision==0) {
+				evenDivisions=evenDivisions+1;
+				if((evenDivisions>2)||(userNumber==1)) return false;
+			}
+		}
+		return true;
+	}
+	
+	public static void main(String[] args) throws IOException{
+		PrintWriter fileToWrite=new PrintWriter ("primeNumbers.txt");
+		for(int currentNumber=1; currentNumber<=100; currentNumber++) {
+			if(isPrime(currentNumber)) {
+				fileToWrite.println(currentNumber);
+			}
+		}
+		fileToWrite.close();
+	}
+}
+public class IsPrimeMethod {
+	public static boolean isPrime(int userNumber) {
+		int evenDivisions=0;
+		if(userNumber<1) return false;
+		for(int currentDivision=1; currentDivision<=userNumber; currentDivision++) {
+			if(userNumber%currentDivision==0) {
+				evenDivisions=evenDivisions+1;
+				if((evenDivisions>2)||(userNumber==1)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	public static void main(String[] args) {
+		System.out.println(isPrime(2));
+	}
+}
