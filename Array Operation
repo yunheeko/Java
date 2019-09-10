@@ -1,0 +1,56 @@
+import java.util.Random;
+
+public class ArrayOperation {
+ 
+public static int getTotal(int [] testData) {
+int total = 0;
+for (int i = 0; i < testData.length; i++) {
+total += testData[i];
+}
+return total;
+}
+ 
+public static double getAverage(int [] testData) {
+int total = getTotal(testData);
+return total/testData.length;
+}
+ 
+public static int getHighest(int [] testData) {
+int highest = testData[0];
+for (int i = 0; i < testData.length; i++) {
+if (highest < testData[i]) {
+highest = testData[i];
+}
+}
+return highest;
+}
+ 
+public static int getLowest(int [] testData) {
+int lowest = testData[0];
+for (int i = 0; i < testData.length; i++) {
+if (lowest > testData[i]) {
+lowest = testData[i];
+}
+}
+return lowest;
+}
+ 
+public static void main(String[] args) {
+Random rand = new Random();
+int random = rand.nextInt(100) + 1;
+int r;
+ 
+int [] testData = new int[random];
+ 
+for(int i = 0; i < random; i++) {
+r = rand.nextInt(100) + 1;
+testData[i] = r;
+System.out.print(testData[i] + " ");
+}
+System.out.println("\n\nTotal: " + getTotal(testData)
++ "\nAverage: " + getAverage(testData)
++ "\nHighest: " + getHighest(testData)
++ "\nLowest: " + getLowest(testData));
+}
+
+}
