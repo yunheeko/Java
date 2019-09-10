@@ -1,0 +1,45 @@
+import java.util.Scanner;
+public class ConversionProgram {
+	public static void menu(){
+		System.out.println("1.Convert to kilometers  2.Convert to inches  3.Convert to feet  4.Quit the program");
+	}
+	
+	
+	public static void showKilometers(double meters){
+		double kilometers=meters*0.001;
+		System.out.printf("%.2f converted to kilometers is %.2f", meters, kilometers);
+	}
+	public static void showInches(double meters){
+		double inches=meters*39.37;
+		System.out.printf("%.2f converted to kilometers is %.2f", meters, inches);
+	}
+	public static void showFeet(double meters){
+		double feet=meters*3.281;
+		System.out.printf("%.2f converted to kilometers is %.2f", meters, feet);
+	}
+	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+		double meters;
+		int sentinel=4;
+		int choice;
+		System.out.println("Type distance in meters");
+		meters=scanner.nextDouble();
+		while(meters<0) {
+			System.out.println("Positive number for distance");
+			meters=scanner.nextDouble();
+		}
+		menu();
+		System.out.println("Enter Choice");
+		choice=scanner.nextInt();
+		
+		while(choice!=sentinel) {
+			if(choice==1) showKilometers(meters);
+			else if(choice==2) showInches(meters);
+			else if(choice==3) showFeet(meters);
+			else System.out.println("Choose valid option");
+			menu();
+			System.out.println("Enter choice");
+			choice=scanner.nextInt();
+		}
+	}
+}
