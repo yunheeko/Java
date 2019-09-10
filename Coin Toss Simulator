@@ -1,0 +1,42 @@
+import java.util.Random;
+
+public class Coin {
+	private String sideUp;
+	public void toss() {
+		Random random=new Random();
+		int randomNumber;
+		randomNumber=random.nextInt(2);
+		if(randomNumber==0) {
+			sideUp="tails";
+		}
+		else {
+			sideUp="heads";
+		}
+	}
+	public String getSideUp() {
+		return sideUp;
+	}
+	public Coin() {
+		toss();
+	}
+
+}
+public class CoinTest {
+	public static void main(String[] args) {
+		Coin penny=new Coin();
+		int numberOfHeads=0;
+		int numberOfTails=0;
+		int numberOfTosses=5;
+		System.out.println("side initially facing up: "+penny.getSideUp()+"\n");
+		for(int currentToss=1; currentToss<=numberOfTosses; currentToss++) {
+			penny.toss();
+			if(penny.getSideUp()=="heads") {
+				numberOfHeads+=1;
+			}
+			else numberOfTails=numberOfTails+1;
+			System.out.println("Toss"+currentToss+": "+penny.getSideUp());
+		}
+		System.out.println("Out of "+numberOfTosses+" tosses, there were "+ numberOfHeads+ " heads and "+numberOfTails+ " tails.");
+		
+	}
+}
