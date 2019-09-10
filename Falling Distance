@@ -1,0 +1,15 @@
+public class FallingDistance {
+	public static double fallingDistance(int fallingTime) {
+		double distance;
+		double g=9.8;
+		distance=((double)1/2)*g*Math.pow(fallingTime,fallingTime);
+		return distance;
+	}
+	
+	public static void main(String [] args) {
+		
+		for(int time=1; time<=10; time++) {
+			System.out.println(time+"seconds "+String.format("%.2f",fallingDistance(time))+ " meters");
+		}
+	}
+}
