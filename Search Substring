@@ -1,0 +1,26 @@
+public class SubString {
+	public static void sub(String a) {
+		
+		int l=a.length();
+		char[]arr=new char[l];
+		int count=0;
+		for(int i=0;i<l;i++) {
+			arr[i]=a.charAt(i);
+		}
+		for(int i=0;i<l;i++) {
+			if(arr[i]=='a'&&arr[i]+1=='a'&&arr[i]+2=='b'&&arr[i]+3=='a')
+				count++;
+		}
+		System.out.println("'aaba' was found "+ count+ " times");
+		
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		String paragraph="I have been working so long aaba about 8 hours aaba";
+		sub(paragraph);
+		
+	}
+	
+}
