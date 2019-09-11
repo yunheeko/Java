@@ -1,0 +1,82 @@
+public class Ship {
+	private String name;
+	private String year;
+	public Ship(String name, String year) {
+		super();
+		this.name = name;
+		this.year = year;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String toString() {
+		return "Name: "+name+"\tYear: "+year;
+	}
+
+}
+
+public class CruiseShip {
+	int max;
+	
+
+	public CruiseShip(int max) {
+		super();
+		this.max = max;
+	}
+
+	
+	public int getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+
+	public String toString(Ship s) {
+		return "Name: "+s.getName()+"\tMax: "+max;
+	}
+
+}
+
+public class CargoShip {
+	int capacity;
+
+	public CargoShip(int capacity) {
+		super();
+		this.capacity = capacity;
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+	public String toString(Ship s) {
+		return "Name: "+s.getName()+"\tCapacity: "+capacity;
+	}
+
+}
+
+public class Demo {
+
+	public static void main(String[] args) {
+		Ship a=new Ship("Titanic","1994");
+		CruiseShip c= new CruiseShip(10000);
+		CargoShip car= new CargoShip(50000);
+		System.out.println(a.getName());
+		}
+	
+	
+}
