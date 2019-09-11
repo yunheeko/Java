@@ -1,0 +1,125 @@
+public class Car {
+private int carNumber;
+
+public Car(int carNumber) {
+super();
+this.carNumber = carNumber;
+}
+
+public int getCarNumber() {
+return carNumber;
+}
+
+public void setCarNumber(int carNumber) {
+this.carNumber = carNumber;
+}
+}
+
+
+
+
+
+
+public class Machine {
+private String plateNumber;
+private int minutes;
+public Machine(String plateNumber, int minutes) {
+super();
+this.plateNumber = plateNumber;
+this.minutes = minutes;
+}
+
+public String getPlateNumber() {
+return plateNumber;
+}
+
+public void setPlateNumber(String plateNumber) {
+this.plateNumber = plateNumber;
+}
+
+public int getMinutes() {
+return minutes;
+}
+
+public void setMinutes(int minutes) {
+this.minutes = minutes;
+}
+}
+
+
+
+
+
+
+
+public class Payment {
+
+Car c;
+double fine;
+int boughtMin;
+public final int hourlyFine=5;
+public Payment(Car c, int boughtMin) {
+super();
+this.c = c;
+this.boughtMin = boughtMin;
+calculateFine();
+}
+
+public Car getC() {
+return c;
+}
+
+public void setC(Car c) {
+this.c = c;
+}
+
+public double getFine() {
+return fine;
+}
+
+public void setFine(double fine) {
+this.fine = fine;
+}
+
+public int getBoughtMin() {
+return boughtMin;
+}
+
+public void setBoughtMin(int boughtMin) {
+this.boughtMin = boughtMin;
+}
+public void calculateFine() {
+int hours=boughtMin/60;
+int remainder=boughtMin%60!=0?1:0;
+fine=(hours+remainder)*hourlyFine;
+
+}
+}
+
+
+
+
+
+import java.util.*;
+
+public class Demo {
+public static void main(String[]args) {
+Scanner k= new Scanner(System.in);
+Car[] cars= new Car[10];
+for(int i=0;i<10;i++) {
+cars[i]=new Car(i);
+}
+String[] plateArray= new String[10];
+int[] minuteArray= new int [10];
+Machine[] m=new Machine[10];
+for(int i=0;i<10;i++) {
+System.out.println("Enter plate number of your car");
+plateArray[i]=k.nextLine();
+System.out.println("How many minutes do you want to park?");
+minuteArray[i]=Integer.parseInt(k.nextLine());
+m[i]=new Machine(plateArray[i],minuteArray[i]); 
+Payment p= new Payment(cars[i], minuteArray[i]);
+System.out.println("Your total is $"+p.getFine());
+}
+System.out.println("Sorry parking lot is full");
+}
