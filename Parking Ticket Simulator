@@ -1,0 +1,164 @@
+public class ParkedCar {
+ private String make;
+ private String model;
+ private String color;
+ private String licenseNumber;
+ private int minutes;
+ 
+ public ParkedCar(String make, String model, String color, String licenseNumber, int minutes) {
+this.make=make;
+this.model=model;
+this.color=color;
+this.licenseNumber=licenseNumber;
+this.minutes=minutes;
+ }
+ 
+ public ParkedCar(String licenseNumber, int minutes) {
+this.licenseNumber=licenseNumber;
+this.minutes=minutes;
+ }
+
+public String getMake() {
+return make;
+}
+
+public void setMake(String make) {
+this.make = make;
+}
+
+public String getModel() {
+return model;
+}
+
+public void setModel(String model) {
+this.model = model;
+}
+
+public String getColor() {
+return color;
+}
+
+public void setColor(String color) {
+this.color = color;
+}
+
+public String getLicenseNumber() {
+return licenseNumber;
+}
+
+public void setLicenseNumber(String licenseNumber) {
+this.licenseNumber = licenseNumber;
+}
+
+public int getMinutes() {
+return minutes;
+}
+
+public void setMinutes(int minutes) {
+this.minutes = minutes;
+}
+}
+
+ 
+public class ParkingMeter {
+
+int purchaseMinutes;
+
+public ParkingMeter(int purchaseMinutes) {
+super();
+this.purchaseMinutes = purchaseMinutes;
+}
+
+public int getPurchaseMinutes() {
+return purchaseMinutes;
+}
+
+public void setPurchaseMinutes(int purchaseMinutes) {
+this.purchaseMinutes = purchaseMinutes;
+}
+}
+
+
+public class ParkingTicket {
+
+ParkedCar c;
+PoliceOfficer p;
+double fine;
+int expiredMinutes;
+public final int baseFine=25;
+public final int hourRate=10;
+public ParkingTicket(ParkedCar c, PoliceOfficer p, int expiredMinutes) {
+super();
+this.c = c;
+this.p = p;
+this.expiredMinutes = expiredMinutes;
+calculateFine();
+}
+public ParkedCar getC() {
+return c;
+}
+public void setC(ParkedCar c) {
+this.c = c;
+}
+public PoliceOfficer getP() {
+return p;
+}
+public void setP(PoliceOfficer p) {
+this.p = p;
+}
+public double getFine() {
+return fine;
+}
+public void setFine(double fine) {
+this.fine = fine;
+}
+public int getExpiredMinutes() {
+return expiredMinutes;
+}
+public void setExpiredMinutes(int expiredMinutes) {
+this.expiredMinutes = expiredMinutes;
+}
+public void calculateFine(){
+if (expiredMinutes<=60) fine=baseFine;
+else {
+int remainder=expiredMinutes%60!=0?1:0;
+fine=baseFine+(expiredMinutes/60+remainder-1)*hourRate;
+}
+}
+}
+
+
+public class PoliceOfficer {
+
+String name;
+String badgeNumber;
+ParkedCar car;
+ParkingMeter meter;
+ParkingTicket ticket;
+public PoliceOfficer(String name, String badgeNumber) {
+super();
+this.name = name;
+this.badgeNumber = badgeNumber;
+this.car = car;
+this.meter = meter;
+this.ticket = ticket;
+}
+public ParkingTicket patrol(ParkedCar car, ParkingMeter meter) {
+if(car.getMinutes()<meter.getPurchaseMinutes()) return null;
+int expiredMinutes=car.getMinutes()-meter.getPurchaseMinutes();
+ParkingTicket ticket=new ParkingTicket(car, this, expiredMinutes);
+return ticket;
+}
+}
+
+
+public class ParkingCarSimulator {
+
+public static void main(String[] args) {
+ParkedCar car=new ParkedCar("2017","BMW", "red", "1234", 200);
+ParkingMeter meter= new ParkingMeter(60);
+PoliceOfficer police= new PoliceOfficer("Ben", "5678");
+ParkingTicket ticket=police.patrol(car, meter);
+System.out.println(ticket.getFine());
+}
+}
