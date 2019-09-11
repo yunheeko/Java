@@ -1,0 +1,223 @@
+public class Bark{
+	private String sound;
+
+	public Bark(String sound) {
+		super();
+		this.sound = sound;
+	}
+
+	public String getSound() {
+		return sound;
+	}
+
+	public void setSound(String sound) {
+		this.sound = sound;
+	}
+
+
+}
+
+
+
+
+
+
+public class BarkRecognizer {
+	Bark b;
+	String[]arr;
+	boolean rec;
+
+	public BarkRecognizer(Bark b,String[]arr) {
+		super();
+		this.b = b;
+		this.arr=arr;
+	}
+
+	
+	public Bark getB() {
+		return b;
+	}
+
+
+	public void setB(Bark b) {
+		this.b = b;
+	}
+
+
+	public String[] getArr() {
+		return arr;
+	}
+
+
+	public void setArr(String[] arr) {
+		this.arr = arr;
+	}
+
+
+
+	public void recognize(Bark b,String[]arr) {
+		for(int i=0; i<4;i++) {
+			if(arr[i].equals(b.getSound())) {
+				System.out.println("bark heard");
+				rec=true; //recognized owner's dog
+			}
+			
+		}
+		
+	
+	}
+	
+	public boolean getRec() {
+		return rec;
+	}
+
+
+	public void setRec(boolean rec) {
+		this.rec = rec;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class DogDoor {
+	boolean instruction;
+	boolean doorStatus; //true is open, false is closed
+	private Bark b;
+	private BarkRecognizer r;
+	
+	public DogDoor(Bark b, BarkRecognizer r) {
+		super();
+		this.b = b;
+		this.r=r;
+	}
+
+
+	public boolean getDoorStatus() {
+		return doorStatus;
+	}
+
+
+	public void setDoorStatus(boolean doorStatus) {
+		this.doorStatus = doorStatus;
+	}
+
+
+	public Bark getB() {
+		return b;
+	}
+
+
+	public void setB(Bark b) {
+		this.b = b;
+	}
+	public BarkRecognizer getR() {
+		return r;
+	}
+
+
+	public void setR(BarkRecognizer r) {
+		this.r = r;
+	}
+	
+	
+	
+	public boolean getInstruction() {
+		return instruction;
+	}
+
+
+	public void setInstruction(boolean instruction) {
+		this.instruction = instruction;
+	}
+
+
+	void open() {
+		Timer t= new Timer();
+		TimerTask task= new TimerTask() {
+			public void run() { 
+				doorStatus=true;
+			}
+		};
+
+		t.schedule(task, 5000);
+		t.cancel();
+		System.out.println("open for 5sec");
+	}
+
+	void close() {
+		doorStatus=false;
+		System.out.println("kept closed");
+	}
+
+}
+
+
+
+
+
+
+
+import java.util.*;
+
+public class Remote {
+	Scanner k= new Scanner(System.in);
+	private boolean openOrClose;// false is close true is open
+	DogDoor d;
+	
+	
+	public Remote(DogDoor d) {
+		super();
+		this.d = d;
+	}
+	
+	public void control(){
+		System.out.println("Type 0 to keep door closed or 1 to open the door");
+		String input=k.nextLine();
+		int x=Integer.parseInt(input);
+		if(x==1) {
+			this.openOrClose=true;
+			
+		}
+		if(x==0) {
+			this.openOrClose=false;
+			
+		}
+	
+	}
+	public boolean getOpenOrClose() {
+		return openOrClose;
+	}
+	
+}
+
+
+
+
+
+public class Demo {
+	public static void main(String[] args) {
+		String [] allowed= {"woof", "arf", "ruff", "vow"};
+		Bark bark= new Bark("woof");
+		BarkRecognizer rec= new BarkRecognizer(bark,allowed);
+		rec.recognize(bark, allowed);
+		DogDoor door=new DogDoor(bark, rec);
+		if(rec.getRec()==true) {
+			Remote r= new Remote(door);
+			r.control();
+			if (r.getOpenOrClose()==true) {
+				door.open();
+			}
+			else door.close();	
+		}
+	}
+}
